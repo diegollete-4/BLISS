@@ -1,21 +1,29 @@
 import { useState } from "react";
 import "./Catalogo.css";
 
-// Ajusta la ruta según dónde guardes las imágenes en tu proyecto
-import star1 from "../src/assets/fondo/Star_1.png";
-import star2 from "../src/assets/fondo/Star_2.png";
-import star3 from "../src/assets/fondo/Star_3.png";
-import starFondo from "../src/assets/fondo/Star_fondo.png";
 
-// Estrellas decorativas dentro de cada tarjeta (posición definida en el CSS: .pos-a, .pos-b…)
+import star1 from "./assets/fondo/Star_1.png";
+import star2 from "./assets/fondo/Star_2.png";
+import star3 from "./assets/fondo/Star_3.png";
+import starFondo from "./assets/fondo/Star_fondo.png";
+
+// Interface para TypeScript
+interface PostreCardProps {
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  imagen?: string;
+  onComprar?: () => void;
+}
+
 const ESTRELLAS_TARJETA = [
-  { src: star1, pos: "pos-a" }, // arriba izquierda
-  { src: star3, pos: "pos-b" }, // arriba derecha
-  { src: star2, pos: "pos-c" }, // abajo izquierda
-  { src: star1, pos: "pos-d" }, // abajo derecha
+  { src: star1, pos: "pos-a" },
+  { src: star3, pos: "pos-b" },
+  { src: star2, pos: "pos-c" },
+  { src: star1, pos: "pos-d" },
 ];
 
-export function PostreCard({ nombre, descripcion, precio, imagen, onComprar }) {
+export function PostreCard({ nombre, descripcion, precio, imagen, onComprar }: PostreCardProps) {
   return (
     <article className="postre-card">
       {ESTRELLAS_TARJETA.map((e) => (
@@ -76,11 +84,10 @@ export default function Catalogo() {
 
   return (
     <div className="pagina">
-      {/* Estrella grande fija en el fondo */}
       <img src={starFondo} alt="" aria-hidden="true" className="fondo-star" />
 
       <nav className="nav">
-        <a href="/">INICIO</a>
+        <a href="/catalogo">INICIO</a>
         <a href="/catalogo">CATÁLOGO</a>
         <input
           type="search"

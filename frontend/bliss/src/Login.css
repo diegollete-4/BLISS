@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+
+.login {
+  --rojo-fondo: #c22e28;
+  --rojo-campo: #eb473d;
+  --rosa-card: #f8d5e0;
+  --crema: #fef8d4;
+
+  position: relative;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 66px 0;
+  display: grid;
+  place-items: center;
+  background: var(--rojo-fondo);
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ---------- Bandas onduladas crema (arriba y abajo) ---------- */
+.login::before,
+.login::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 56px;
+  z-index: 3;
+  pointer-events: none;
+  background-repeat: repeat-x;
+  background-size: 96px 56px;
+}
+.login::before {
+  top: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 56'%3E%3Cpath fill='%23fef8d4' d='M0 0H96V40Q72 64 48 40T0 40Z'/%3E%3C/svg%3E");
+}
+.login::after {
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 56'%3E%3Cpath fill='%23fef8d4' d='M0 56H96V16Q72-8 48 16T0 16Z'/%3E%3C/svg%3E");
+}
+
+/* ---------- Escenario (tarjeta + fresas) ---------- */
+.login__stage {
+  position: relative;
+  width: min(542px, 92vw);
+  z-index: 1;
+}
+
+/* ---------- Fresas ---------- */
+.login__fresa {
+  position: absolute;
+  top: 93px;
+  width: 599px;
+  height: auto;
+  z-index: 2; /* por encima de la tarjeta */
+  pointer-events: none;
+  user-select: none;
+  /* En el diseño se ve un poco más apagada que el PNG; ajusta o quita este filtro */
+  filter: saturate(0.8) brightness(0.96);
+}
+.login__fresa--izq {
+  left: -420px;
+}
+.login__fresa--der {
+  left: 362px;
+  transform: scaleX(-1);
+}
+
+/* ---------- Tarjeta ---------- */
+.login__card {
+  position: relative;
+  box-sizing: border-box;
+  min-height: 760px;
+  padding: 55px 50px 93px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--rosa-card);
+  border-radius: 56px;
+  box-shadow: 0 0 70px rgba(0, 0, 0, 0.35);
+  overflow: hidden; /* recorta las estrellas que se salen */
+}
+.login__card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.login__estrella {
+  position: absolute !important;
+  z-index: 0 !important;
+  background: rgba(235, 71, 61, 0.12);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  pointer-events: none;
+}
+
+.login__titulo {
+  margin: 0;
+  font-size: 42px;
+  line-height: 42px;
+  font-weight: 700;
+  color: var(--rojo-fondo);
+  text-align: center;
+  white-space: nowrap;
+}
+.login__by {
+  margin-top: 12px;
+  width: 180px;
+  height: 41px;
+  display: grid;
+  place-items: center;
+  background: var(--crema);
+  border-radius: 999px;
+  color: var(--rojo-fondo);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* ---------- Campos ---------- */
+.login__campos {
+  margin-top: 59px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.login__campo {
+  box-sizing: border-box;
+  height: 101px;
+  padding: 15px 26px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  background: var(--rojo-campo);
+  border-radius: 51px;
+  color: #fef8d4;
+  font-size: 21px;
+  font-weight: 700;
+  text-align: center;
+}
+.login__campo input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 29px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--rosa-card);
+  color: #5a1a17;
+  font: 400 15px Arial, Helvetica, sans-serif;
+  outline: none;
+}
+.login__campo input:focus {
+  box-shadow: 0 0 0 3px #fff;
+}
+
+/* ---------- Botón de Google ---------- */
+.login__google {
+  margin-top: 75px;
+  box-sizing: border-box;
+  width: min(455px, calc(100% + 26px));
+  height: 55px;
+  padding: 0 0 0 39px;
+  display: flex;
+  align-items: center;
+  gap: 46px;
+  background: var(--crema);
+  border: 0;
+  border-radius: 999px;
+  color: var(--rojo-campo);
+  font: 600 24px "Open Sans", Arial, sans-serif;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.15s;
+}
+.login__google:hover {
+  filter: brightness(0.97);
+  transform: scale(1.01);
+}
+.login__g {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--rojo-campo);
+  color: #fff;
+  font: 600 20px "Open Sans", Arial, sans-serif;
+}
+
+.login__oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Pantallas más chicas ---------- */
+@media (max-width: 1100px) {
+  .login__fresa {
+    transform-origin: 50% 50%;
+  }
+  .login__fresa--izq {
+    transform: scale(0.6);
+    left: -480px;
+  }
+  .login__fresa--der {
+    transform: scaleX(-1) scale(0.6);
+    left: 422px;
+  }
+}
+@media (max-width: 720px) {
+  .login__fresa {
+    display: none;
+  }
+  .login__card {
+    padding-inline: 24px;
+  }
+  .login__titulo {
+    font-size: 34px;
+  }
+  .login__campo {
+    font-size: 18px;
+  }
+  .login__google {
+    width: 100%;
+    font-size: 20px;
+    gap: 24px;
+    padding-left: 20px;
+  }
+}
